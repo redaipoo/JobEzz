@@ -188,7 +188,6 @@ export interface PlatformSettings {
 /** Params for every Stack screen (undefined = no params needed) */
 export type RootStackParamList = {
   Onboarding: undefined;
-  RoleSelect: undefined;
   Auth: undefined;
   Otp: { phone: string };
   MainTabs: NavigatorScreenParams<MainTabParamList> | undefined;

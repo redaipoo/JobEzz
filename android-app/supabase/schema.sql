@@ -275,21 +275,15 @@ create index if not exists subs_provider_status      on public.subscriptions (pr
 -- ────────────────────────────────────────────────────────────────
 
 -- إنشاء profile تلقائياً بعد auth.users.insert
+-- التسجيل برقم الهاتف فقط: كل شيء آخر (الاسم، المدينة، الدور) يُملأ لاحقاً
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
-  insert into public.profiles (id, phone, full_name, role, roles)
+  insert into public.profiles (id, phone, full_name)
   values (
     new.id,
-    new.phone,
-    coalesce(new.raw_user_meta_data ->> 'full_name', ''),
-    coalesce((new.raw_user_meta_data ->> 'role')::public.user_role, 'customer'),
-    coalesce(
-      case when new.raw_user_meta_data -> 'roles' is not null
-           then array(select jsonb_array_elements_text(new.raw_user_meta_data -> 'roles'))
-      end,
-      '{}'::text[]
-    )
+    coalesce(new.phone, new.raw_user_meta_data ->> 'phone', ''),
+    coalesce(new.raw_user_meta_data ->> 'full_name', '')
   )
   on conflict (id) do nothing;
   return new;

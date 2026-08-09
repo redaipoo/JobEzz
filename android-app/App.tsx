@@ -42,7 +42,7 @@ import {
   Jobs, JobDetail, JobApply, EmployerJobs, EmployerPost, EmployerApplicants,
   CompanyProfile, Applications, SavedJobs,
 } from './src/screens/jobs';
-import { Onboarding, RoleSelect, Auth, Otp } from './src/screens/onboarding';
+import { Onboarding, Auth, Otp } from './src/screens/onboarding';
 
 /* ── Accessibility: cap the runaway text-zoom that breaks fixed layouts while
  * still letting users enlarge text. Native default lets fontSize reach ~3×;
@@ -113,7 +113,6 @@ function RootStack({ initialRouteName = 'Onboarding' as any }: { initialRouteNam
     >
       {/* entry / auth */}
       <Stack.Screen name="Onboarding" component={Onboarding} options={{ animationEnabled: false }} />
-      <Stack.Screen name="RoleSelect" component={RoleSelect} options={{ animationEnabled: false }} />
       <Stack.Screen name="Auth" component={Auth} options={{ animationEnabled: false }} />
       <Stack.Screen name="Otp" component={Otp} options={{ animationEnabled: false }} />
 

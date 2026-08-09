@@ -83,7 +83,6 @@ export const linking: LinkingOptions<RootStackParamList> = {
   config: {
     screens: {
       Onboarding: 'onboarding',
-      RoleSelect: 'roles',
       Auth: 'auth',
       Otp: 'otp',
       MainTabs: {

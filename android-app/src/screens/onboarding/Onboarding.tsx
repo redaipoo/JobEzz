@@ -123,8 +123,8 @@ export function Onboarding({ navigation }: any) {
               <Text style={styles.ghostText}>السابق</Text>
             </PressableScale>
           ) : <View style={styles.ghost} />}
-          <PressableScale onPress={() => navigation.navigate('RoleSelect')} activeScale={0.9} style={styles.ghost} accessibilityLabel="إعداد الحساب">
-            <Text style={styles.ghostText}>إعداد الحساب</Text>
+          <PressableScale onPress={() => navigation.navigate('Auth')} activeScale={0.9} style={styles.ghost} accessibilityLabel="تسجيل الدخول">
+            <Text style={styles.ghostText}>تسجيل الدخول برقم الهاتف</Text>
           </PressableScale>
         </View>
       </View>

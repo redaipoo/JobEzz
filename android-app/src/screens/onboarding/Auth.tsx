@@ -52,8 +52,8 @@ export function Auth({ navigation }: any) {
               <View style={styles.glyph}>
                 <IconTile icon="phone" size={52} color={palette.accent} />
               </View>
-              <Text style={styles.title}>سجّل الدخول</Text>
-              <Text style={styles.sub}>أدخل رقم هاتفك الليبي وسنرسل لك رمز تحقق.</Text>
+              <Text style={styles.title}>أنشئ حسابك</Text>
+              <Text style={styles.sub}>رقم هاتفك الليبي يكفي — سنرسل لك رمز تحقق.</Text>
 
               <Input
                 label="رقم الهاتف"

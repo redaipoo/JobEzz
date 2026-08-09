@@ -7,22 +7,10 @@
  * النموذج: phone (+password PIN اختياري) + OTP SMS (عند تفعيل Twilio)
  */
 import { getSupabase, isSupabaseConfigured } from './supabase';
-import type { UserRole, Language } from '../types';
 
 /* ─────────────────────────────────────────────
  * الأنواع المحلية
  * ───────────────────────────────────────────── */
-
-export type SignUpPayload = {
-  /** رقم الهاتف الليبي بصيغة دولية بدون '+' أو معه — يُ normalized تلقائياً */
-  phone: string;
-  fullName: string;
-  city: string;
-  role: UserRole;
-  /** الأدوار الإضافية التي يختارها المستخدم (اختياري) */
-  extraRoles?: UserRole[];
-  locale?: Language;
-};
 
 export type AuthResult =
   | { ok: true; mode: 'otp_sent' | 'password_ready' | 'signed_in'; message?: never }
@@ -61,35 +49,12 @@ export const isValidLibyanPhone = (raw: string): boolean => {
 };
 
 /* ─────────────────────────────────────────────
- * تسجيل مستخدم جديد
+ * تسجيل الدخول برقم الهاتف فقط (OTP جديد)
  *
- * الأداء: إذا كان Supabase غير مهيأ → نعيد "يمكن تجاوز إلى وضع Local".
+ * يرسل رمز التحقق عبر SMS. عند أول مرة يُنشئ حساباً كاملاً
+ * في auth.users ويُنشئ ملفه الشخصي في جدول profiles تلقائياً
+ * (عبر trigger handle_new_user) — رقم الهاتف هو كل ما نحتاجه.
  * ───────────────────────────────────────────── */
-export async function signUpWithPhone(payload: SignUpPayload): Promise<AuthResult> {
-  if (!isSupabaseConfigured()) {
-    return { ok: true, mode: 'otp_sent' };        // وضع التطوير — أرسل OTP محليًا
-  }
-  const phone = normalizeLibyanPhone(payload.phone);
-  const sb = getSupabase();
-  const { error } = await sb.auth.signInWithOtp({
-    phone,
-    options: {
-      data: {
-        full_name: payload.fullName,
-        city: payload.city,
-        role: payload.role,
-        roles: payload.extraRoles ?? [payload.role],
-        locale: payload.locale ?? 'ar',
-      } as any,
-    },
-  });
-  if (error) return { ok: false, message: error.message };
-  return { ok: true, mode: 'otp_sent' };
-}
-
-/* ─────────────────────────────────────────~~~~
- * التحقق من OTP والدخول
- * ─────────────────────────────────────────~~~~ */
 export async function verifyPhoneOtp(phone: string, token: string): Promise<AuthResult> {
   if (!isSupabaseConfigured()) {
     // وضع التطوير: أي رمز 4 خانات يقبل
