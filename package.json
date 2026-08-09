@@ -1,0 +1,27 @@
+{
+  "name": "jobezz-root",
+  "version": "1.2.0",
+  "private": true,
+  "description": "JobEzz — All-in-One Libyan Platform for Jobs, On-Demand Services & Academy",
+  "scripts": {
+    "web": "npx -y serve web-prototype -p 3000",
+    "app": "cd android-app && npm start",
+    "app:web": "cd android-app && npm run web",
+    "app:tunnel": "cd android-app && npm run start:tunnel",
+    "app:clear": "cd android-app && npm run start:clear",
+    "app:android": "cd android-app && npm run android",
+    "typecheck": "cd android-app && npm run typecheck"
+  },
+  "keywords": [
+    "jobezz",
+    "jobs",
+    "services",
+    "courses",
+    "libya",
+    "react-native",
+    "expo",
+    "pwa"
+  ],
+  "author": "JobEzz Team",
+  "license": "MIT"
+}

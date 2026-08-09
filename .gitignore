@@ -1,0 +1,31 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Node / Expo
+node_modules/
+.expo/
+dist/
+npm-debug.log*
+yarn-error.log
+.android/
+.ios/
+
+# Native build artifacts
+android/app/build/
+ios/build/
+*.keystore
+google-services.json
+
+# Env / secrets
+.env
+.env.local
+*.pem
+
+# Build artifacts
+*.apk
+*.aab
+dist/
+android-app/dist/
+shots_*.png

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#123B5E" />
+  <title>JobEzz — لوحة الأدمن الأسطورية</title>
+  <link rel="icon" href="assets/img/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style-legendary.css" />
+  <link rel="stylesheet" href="admin-legendary.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+  <div class="admin">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="JobEzz" width="36" height="36">
+        <div>
+          <b>JobEzz</b>
+          <div class="logo-sub">لوحة التحكم</div>
+        </div>
+      </div>
+      <nav class="nav" id="nav" role="navigation" aria-label="القائمة الرئيسية">
+        <a data-sec="overview" class="active" role="button" tabindex="0"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span> نظرة عامة</a>
+        <a data-sec="users" role="button" tabindex="0"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> المستخدمون</a>
+        <a data-sec="content" role="button" tabindex="0"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span> إدارة المحتوى</a>
+        <a data-sec="abtesting" role="button" tabindex="0"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31M14 2v7.31M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"/></svg></span> اختبارات A/B</a>
+        <a data-sec="disputes" role="button" tabindex="0"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> النزاعات</a>
+        <a data-sec="settings" role="button" tabindex="0"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> الإعدادات</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-profile">
+          <div class="avatar-sm">أ</div>
+          <div>
+            <div class="fw-700" style="font-size: 13px">المدير العام</div>
+            <div class="sub" style="font-size: 11px">admin@jobezz.ly</div>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع الداكن">الوضع الداكن</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="topbar-admin">
+        <div class="title" id="pageTitle">نظرة عامة</div>
+        <div class="row gap-10">
+          <span class="badge badge-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> أدمن</span>
+          <button class="btn-icon-sm" onclick="exportReport()" title="تصدير تقرير"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+          <button class="btn-icon-sm" onclick="refreshData()" title="تحديث"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></button>
+        </div>
+      </div>
+      <div class="content" id="content"><!-- rendered by admin-legendary.js --></div>
+    </main>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/data-extra.js"></script>
+  <script src="assets/js/animations-legendary.js"></script>
+  <script src="admin-legendary.js"></script>
+  <script>
+    function exportReport() {
+      LegendaryAnimations.SoundDesign.success();
+      LegendaryAnimations.HapticFeedback.success();
+      // Generate CSV report
+      const csv = 'المؤشر,القيمة\nالمستخدمون النشطون,12840\nحجوزات خدمات,3240\nطلبات توظيف,1870\nالإيرادات,48200';
+      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'jobezz-report-' + new Date().toISOString().split('T')[0] + '.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+    function refreshData() {
+      LegendaryAnimations.SoundDesign.whoosh();
+      renderCurrentSection();
+    }
+  </script>
+</body>
+</html>

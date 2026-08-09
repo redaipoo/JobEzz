@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#123B5E" />
+  <title>JobEzz — وظائف • خدمات • دورات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style-legendary.css?v=3.5" />
+  <style>
+    /* ===== DIAGNOSTIC: Red error bar ===== */
+    #error-display {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 99999; background: #ff0000; color: #fff;
+      font-size: 13px; padding: 10px 16px;
+      font-family: monospace; white-space: pre-wrap;
+      max-height: 200px; overflow-y: auto;
+      direction: ltr; text-align: left;
+    }
+
+    /* ===== LOADER ===== */
+    #legendary-loader {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, #0A1F33, #123B5E);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease;
+    }
+    #legendary-loader.done {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      display: none !important;
+    }
+    .loader-logo { font-size: 48px; font-weight: 900; color: white; }
+    .loader-tagline { color: rgba(255,255,255,0.7); font-size: 15px; margin-top: 8px; }
+    .loader-bar { width: 180px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 99px; margin-top: 24px; overflow: hidden; }
+    .loader-bar-fill { height: 100%; background: white; border-radius: 99px; animation: loaderFill 0.8s ease forwards; }
+    @keyframes loaderFill { 0% { width: 0; } 100% { width: 100%; } }
+
+    /* ===== FORCE VISIBILITY on #app and its children ===== */
+    #app {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      min-height: 100vh !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    #app > .screen {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    #app .anim-fade-up,
+    #app .anim-slide-l,
+    #app .anim-fade-left,
+    #app .anim-fade-right {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Error Display -->
+  <div id="error-display"></div>
+
+  <!-- Loader -->
+  <div id="legendary-loader">
+    <div class="loader-logo">JobEzz</div>
+    <div class="loader-tagline">وظائف • خدمات • دورات</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <!-- App Container -->
+  <div id="app" role="main" aria-label="تطبيق JobEzz"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- GLOBAL ERROR CATCHER & SERVICE WORKER CLEAR -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) { registration.unregister(); }
+      });
+    }
+    window.onerror = function(msg, url, line, col, error) {
+      var d = document.getElementById('error-display');
+      if (d) { d.style.display = 'block'; d.textContent += 'JS ERROR: ' + msg + ' | File: ' + (url||'').split('/').pop() + ':' + line + '\n'; }
+      return false;
+    };
+    window.addEventListener('unhandledrejection', function(e) {
+      var d = document.getElementById('error-display');
+      if (d) { d.style.display = 'block'; d.textContent += 'PROMISE ERROR: ' + e.reason + '\n'; }
+    });
+  </script>
+
+  <!-- Cache-busted Scripts -->
+  <script src="assets/js/data.js?v=4.0"></script>
+  <script src="assets/js/data-extra.js?v=4.0"></script>
+  <script src="assets/js/icons.js?v=4.0"></script>
+  <script src="assets/js/animations-legendary.js?v=4.0"></script>
+  <script src="assets/js/app.js?v=4.0"></script>
+
+  <!-- FORCE LOADER KILL + FALLBACK -->
+  <script>
+    (function() {
+      function killLoader() {
+        var loader = document.getElementById('legendary-loader');
+        if (loader) {
+          loader.classList.add('done');
+          loader.style.cssText = 'display:none !important; opacity:0 !important; pointer-events:none !important; visibility:hidden !important;';
+        }
+      }
+      killLoader();
+      setTimeout(killLoader, 50);
+      setTimeout(killLoader, 200);
+      setTimeout(killLoader, 500);
+      setTimeout(killLoader, 1000);
+    })();
+  </script>
+</body>
+</html>

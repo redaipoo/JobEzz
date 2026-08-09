@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "JobEzz",
+    "owner": "redaking7",
+    "slug": "jobezz",
+    "version": "1.2.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "scheme": "jobezz",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#050816"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jobezz.app"
+    },
+    "android": {
+      "package": "com.jobezz.app",
+      "versionCode": 2,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#123B5E"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8d4c28fa-999b-474c-a1d9-dc77020d7f9d"
+      }
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/adaptive-icon.png",
+          "color": "#123B5E",
+          "defaultChannel": "default",
+          "sounds": []
+        }
+      ]
+    ]
+  }
+}

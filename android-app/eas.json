@@ -1,0 +1,36 @@
+{
+  "cli": {
+    "version": ">= 10.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "http://localhost:3000/v1"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.jobezz.example/v1"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle",
+        "generateAppStoreConfig": true,
+        "autoIncrement": "versionCode"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.jobezz.example/v1"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#123B5E" />
+<title>JobEzz — نظام التصميم الأسطوري | Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   JobEzz — LEGENDARY Showcase
+   Living design system gallery
+   ============================================================ */
+:root{
+  --navy-900:#0A1F33; --navy-800:#0E2F4A; --navy-700:#123B5E; --navy-600:#1A4A73;
+  --navy-500:#245A8A; --navy-400:#3A7AB5; --navy-300:#5A9AD5; --navy-200:#8ABCE8;
+  --navy-100:#B8DCF5; --navy-50:#E4F1FB;
+  --blue-700:#4AA3E0; --blue-600:#2E8BD0; --blue-500:#5BB0E8; --blue-100:#E4F5FE;
+  --success:#10B981; --warning:#F59E0B; --danger:#EF4444; --purple:#8B5CF6;
+  --pink:#EC4899; --teal:#14B8A6; --orange:#F97316;
+  --ink:#0F172A; --ink-2:#1E293B; --ink-3:#334155;
+  --paper:#F4F7FB; --paper-2:#E9EFF6;
+  --line:#DCE4EE;
+  --font-display:"Changa", "Tajawal", sans-serif;
+  --font-body:"Tajawal", system-ui, sans-serif;
+  --font-en:"Inter", system-ui, sans-serif;
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--blue-700);color:#fff}
+
+/* ---------- Ambient background ---------- */
+.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+  radial-gradient(1200px 600px at 85% -10%, rgba(74,163,224,.10), transparent 60%),
+  radial-gradient(900px 500px at 0% 100%, rgba(18,59,94,.08), transparent 55%),
+  var(--paper);}
+.ambient::before{content:"";position:absolute;inset:0;opacity:.4;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%);}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:drift 18s ease-in-out infinite}
+.orb.a{width:340px;height:340px;background:var(--blue-700);top:-80px;left:-60px}
+.orb.b{width:280px;height:280px;background:var(--purple);bottom:5%;right:-40px;animation-delay:-6s}
+.orb.c{width:220px;height:220px;background:var(--teal);top:45%;left:40%;animation-delay:-11s;opacity:.3}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-25px) scale(1.08)}66%{transform:translate(-20px,20px) scale(.95)}}
+
+/* ---------- Top ribbon ---------- */
+.ribbon{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(16px,4vw,48px);
+  background:rgba(244,247,251,.82);backdrop-filter:blur(14px) saturate(1.6);
+  border-bottom:1px solid var(--line);}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.brand .mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--navy-700),var(--blue-700));
+  display:grid;place-items:center;color:#fff;font-size:20px;box-shadow:0 6px 18px rgba(18,59,94,.35);transform:rotate(-6deg)}
+.ribbon nav{display:flex;gap:6px;flex-wrap:wrap}
+.ribbon nav a{font-size:14px;font-weight:700;color:var(--ink-3);padding:8px 14px;border-radius:99px;transition:.2s var(--ease-out);text-decoration:none}
+.ribbon nav a:hover{background:var(--navy-50);color:var(--navy-700)}
+.ver-pill{font-family:var(--font-en);font-size:12px;font-weight:800;background:var(--ink);color:#fff;padding:5px 12px;border-radius:99px;letter-spacing:.05em}
+
+/* ---------- Opening: phone + statement ---------- */
+.opening{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,72px);align-items:center;
+  padding:clamp(40px,7vw,96px) clamp(16px,4vw,48px) clamp(48px,6vw,80px);max-width:1280px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-en);font-weight:800;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--blue-600);margin-bottom:20px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--blue-600)}
+.opening h1{font-family:var(--font-display);font-weight:800;font-size:clamp(38px,6.5vw,76px);line-height:1.02;letter-spacing:-.03em;margin-bottom:22px}
+.opening h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--navy-700)}
+.opening h1 em{font-style:normal;color:var(--blue-600)}
+.opening p.lead{font-size:clamp(16px,1.6vw,19px);color:var(--ink-3);max-width:520px;margin-bottom:32px}
+.stat-row{display:flex;gap:36px;flex-wrap:wrap}
+.stat .n{font-family:var(--font-en);font-weight:900;font-size:clamp(28px,3.5vw,40px);color:var(--navy-700);line-height:1}
+.stat .l{font-size:13px;color:var(--ink-3);margin-top:4px}
+
+/* ---------- Phone mockup (live) ---------- */
+.phone-wrap{display:flex;justify-content:center;perspective:1600px}
+.phone{width:300px;height:620px;border-radius:44px;background:#0A1F33;padding:12px;position:relative;
+  box-shadow:0 40px 80px -20px rgba(10,31,51,.55),0 0 0 2px rgba(255,255,255,.06) inset;
+  transform:rotateY(-14deg) rotateX(4deg);transition:transform .6s var(--ease-spring);animation:phoneFloat 6s ease-in-out infinite}
+.phone:hover{transform:rotateY(-4deg) rotateX(2deg)}
+@keyframes phoneFloat{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.phone .notch{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:110px;height:26px;background:#0A1F33;border-radius:0 0 16px 16px;z-index:5}
+.screen{width:100%;height:100%;border-radius:34px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column;position:relative}
+.scr-status{display:flex;justify-content:space-between;padding:10px 20px 4px;font-family:var(--font-en);font-size:12px;font-weight:700;color:var(--ink)}
+.scr-body{flex:1;overflow:hidden;position:relative}
+.scr-view{position:absolute;inset:0;padding:16px;overflow-y:auto;opacity:0;transform:translateX(-24px);transition:.45s var(--ease-out);pointer-events:none}
+.scr-view.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.scr-view::-webkit-scrollbar{display:none}
+.scr-greet{font-size:13px;color:var(--ink-3)}
+.scr-name{font-family:var(--font-display);font-weight:800;font-size:22px;margin-bottom:12px}
+.mini-search{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:10px 14px;font-size:13px;color:var(--ink-3);margin-bottom:16px;box-shadow:0 2px 8px rgba(18,59,94,.05)}
+.mini-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.mini-cat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:10px;font-weight:700;color:var(--ink-3);transition:.2s var(--ease-spring);cursor:pointer}
+.mini-cat .ic{font-size:20px;display:block;margin-bottom:4px}
+.mini-cat:active{transform:scale(.9)}
+.mini-cat:hover{border-color:var(--blue-700);color:var(--navy-700);transform:translateY(-3px)}
+.mini-sec{font-family:var(--font-display);font-weight:700;font-size:15px;margin-bottom:10px}
+.mini-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px;display:flex;gap:10px;align-items:center;box-shadow:0 2px 8px rgba(18,59,94,.04);transition:.2s var(--ease-spring);cursor:pointer}
+.mini-card:hover{transform:translateX(-4px);box-shadow:0 8px 20px rgba(18,59,94,.1)}
+.mini-av{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--navy-100),var(--blue-100));display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.mini-card .t{font-weight:800;font-size:13px}
+.mini-card .s{font-size:11px;color:var(--ink-3)}
+.mini-badge{font-size:9px;font-weight:800;background:var(--navy-50);color:var(--navy-700);padding:3px 8px;border-radius:99px;margin-inline-start:auto}
+.scr-nav{display:flex;justify-content:space-around;padding:10px 8px 16px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.scr-nav button{background:none;border:none;font-size:20px;opacity:.4;transition:.2s var(--ease-spring);cursor:pointer;position:relative}
+.scr-nav button.on{opacity:1;transform:scale(1.15)}
+.scr-nav button.on::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--blue-600)}
+.phone-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
+.phone-dots button{width:9px;height:9px;border-radius:50%;border:none;background:var(--line);cursor:pointer;transition:.2s}
+.phone-dots button.on{background:var(--blue-600);width:26px;border-radius:99px}
+
+/* ---------- Section shell ---------- */
+.section{max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(16px,4vw,48px)}
+.sec-head{margin-bottom:44px;max-width:640px}
+.sec-tag{font-family:var(--font-en);font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-600);margin-bottom:12px}
+.sec-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.02em;margin-bottom:14px}
+.sec-head p{font-size:16px;color:var(--ink-3)}
+
+/* ---------- Color system ---------- */
+.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.swatch{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:pointer;transition:.25s var(--ease-spring)}
+.swatch:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(18,59,94,.14)}
+.swatch .chip{height:96px;position:relative}
+.swatch .chip .copy{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-family:var(--font-en);font-weight:800;font-size:12px;opacity:0;transition:.2s;background:rgba(0,0,0,.25)}
+.swatch:hover .chip .copy{opacity:1}
+.swatch .meta{padding:10px 12px}
+.swatch .meta .nm{font-weight:800;font-size:13px}
+.swatch .meta .hx{font-family:var(--font-en);font-size:11px;color:var(--ink-3)}
+
+/* ---------- Type specimen ---------- */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.type-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;transition:.25s var(--ease-spring)}
+.type-card:hover{box-shadow:0 16px 40px rgba(18,59,94,.1);transform:translateY(-4px)}
+.type-card .lbl{font-family:var(--font-en);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-600);margin-bottom:16px}
+.type-display{font-family:var(--font-display);font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em}
+.type-body{font-size:17px;line-height:1.7;color:var(--ink-2)}
+.type-en{font-family:var(--font-en);font-weight:800;font-size:40px;letter-spacing:-.03em}
+.type-scale{display:flex;flex-direction:column;gap:10px}
+.type-scale div{display:flex;align-items:baseline;gap:14px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.type-scale .sz{font-family:var(--font-en);font-size:11px;color:var(--ink-3);width:52px;flex-shrink:0}
+
+/* ---------- Components gallery ---------- */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.comp{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;transition:.25s var(--ease-spring)}
+.comp:hover{box-shadow:0 16px 40px rgba(18,59,94,.1);transform:translateY(-4px)}
+.comp .ct{font-family:var(--font-display);font-weight:700;font-size:16px;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.comp .ct .dot{width:8px;height:8px;border-radius:50%;background:var(--blue-600)}
+.demo{display:flex;flex-direction:column;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:14px;font-family:var(--font-body);font-weight:800;font-size:15px;border:none;cursor:pointer;transition:.2s var(--ease-spring);position:relative;overflow:hidden}
+.btn:active{transform:scale(.95)}
+.btn-primary{background:linear-gradient(135deg,var(--navy-700),var(--navy-600));color:#fff;box-shadow:0 8px 20px rgba(18,59,94,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(18,59,94,.4)}
+.btn-accent{background:linear-gradient(135deg,var(--blue-600),var(--blue-700));color:#fff;box-shadow:0 8px 20px rgba(74,163,224,.35)}
+.btn-ghost{background:#fff;color:var(--navy-700);border:2px solid var(--line)}
+.btn-ghost:hover{border-color:var(--blue-700);color:var(--blue-600)}
+.chip-demo{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:99px;background:#fff;border:2px solid var(--line);font-weight:700;font-size:13px;color:var(--ink-3);cursor:pointer;transition:.2s var(--ease-spring)}
+.chip-demo:hover{border-color:var(--blue-700);color:var(--blue-600);transform:translateY(-2px)}
+.chip-demo.on{background:linear-gradient(135deg,var(--navy-700),var(--navy-600));color:#fff;border-color:transparent}
+.badge-demo{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:800}
+.b-navy{background:var(--navy-50);color:var(--navy-700)}
+.b-success{background:#D1FAE5;color:#065F46}
+.b-warning{background:#FEF3C7;color:#92400E}
+.b-danger{background:#FEE2E2;color:#991B1B}
+.input-demo{width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:14px;font-family:var(--font-body);font-size:15px;transition:.2s;outline:none}
+.input-demo:focus{border-color:var(--blue-700);box-shadow:0 0 0 4px rgba(74,163,224,.15)}
+.switch-demo{width:52px;height:30px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;transition:.3s var(--ease-spring)}
+.switch-demo.on{background:var(--success)}
+.switch-demo i{position:absolute;top:3px;inset-inline-start:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.3s var(--ease-spring);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.switch-demo.on i{inset-inline-start:25px}
+.progress-demo{height:10px;border-radius:99px;background:var(--paper-2);overflow:hidden}
+.progress-demo .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue-600),var(--blue-700));width:0;transition:width 1.4s var(--ease-out);position:relative;overflow:hidden}
+.progress-demo .fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shimmer 1.8s infinite}
+@keyframes shimmer{to{transform:translateX(200%)}}
+.skel{background:linear-gradient(90deg,var(--paper-2) 25%,#f0f4f9 50%,var(--paper-2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
+
+/* ---------- Motion playground ---------- */
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.motion-tile{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 16px;text-align:center;cursor:pointer;transition:.2s}
+.motion-tile:hover{box-shadow:0 12px 28px rgba(18,59,94,.1)}
+.motion-stage{height:70px;display:grid;place-items:center;margin-bottom:14px}
+.motion-ball{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--navy-700),var(--blue-700));box-shadow:0 8px 18px rgba(18,59,94,.3)}
+.motion-tile .nm{font-weight:800;font-size:14px}
+.motion-tile .ds{font-family:var(--font-en);font-size:11px;color:var(--ink-3)}
+.m-spring.play .motion-ball{animation:mSpring 1s var(--ease-spring)}
+@keyframes mSpring{0%{transform:scale(.3)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.m-bounce.play .motion-ball{animation:mBounce .9s cubic-bezier(.68,-.55,.265,1.55)}
+@keyframes mBounce{0%{transform:translateY(-40px)}50%{transform:translateY(0)}70%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+.m-flip.play .motion-ball{animation:mFlip .8s ease}
+@keyframes mFlip{from{transform:perspective(400px) rotateY(0)}to{transform:perspective(400px) rotateY(360deg)}}
+.m-shake.play .motion-ball{animation:mShake .5s}
+@keyframes mShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.m-pulse.play .motion-ball{animation:mPulse 1s ease infinite}
+@keyframes mPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:.7}}
+.m-spin.play .motion-ball{animation:mSpin .8s linear}
+@keyframes mSpin{to{transform:rotate(360deg)}}
+.m-float.play .motion-ball{animation:mFloat 1.6s ease-in-out infinite}
+@keyframes mFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.m-wiggle.play .motion-ball{animation:mWiggle .6s ease}
+@keyframes mWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+
+/* ---------- Gamification ---------- */
+.gamewrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.level-card{background:linear-gradient(135deg,var(--navy-800),var(--navy-600));border-radius:26px;padding:32px;color:#fff;position:relative;overflow:hidden;box-shadow:0 24px 50px -12px rgba(10,31,51,.5)}
+.level-card::before{content:"";position:absolute;top:-40px;left:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(74,163,224,.4),transparent 70%)}
+.level-card .rank{font-family:var(--font-en);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.level-card .lvl{font-family:var(--font-display);font-weight:800;font-size:44px;line-height:1;margin:6px 0 4px}
+.level-card .title{font-size:18px;font-weight:700;color:var(--blue-100)}
+.xp-bar{height:12px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;margin:20px 0 8px}
+.xp-bar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue-700),var(--teal));width:0;transition:width 1.6s var(--ease-out)}
+.xp-txt{font-family:var(--font-en);font-size:13px;opacity:.85}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px}
+.badge-earn{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 12px;text-align:center;transition:.25s var(--ease-spring);cursor:pointer}
+.badge-earn:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 16px 32px rgba(18,59,94,.14)}
+.badge-earn .em{font-size:38px;display:block;margin-bottom:8px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.12))}
+.badge-earn.locked{opacity:.4;filter:grayscale(1)}
+.badge-earn .bn{font-weight:800;font-size:13px}
+.badge-earn .bp{font-size:11px;color:var(--ink-3)}
+.streak{display:flex;gap:8px;margin-top:16px}
+.streak .day{flex:1;aspect-ratio:1;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;font-family:var(--font-en);font-weight:800;font-size:13px;color:var(--ink-3)}
+.streak .day.done{background:linear-gradient(135deg,var(--orange),var(--warning));color:#fff;box-shadow:0 4px 12px rgba(245,158,11,.4)}
+.leader{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;margin-top:24px}
+.leader h4{font-family:var(--font-display);font-weight:700;margin-bottom:16px}
+.leader .row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.leader .row:last-child{border:none}
+.leader .pos{font-family:var(--font-en);font-weight:900;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13px;background:var(--paper-2)}
+.leader .row.top .pos{background:linear-gradient(135deg,var(--warning),var(--orange));color:#fff}
+.leader .av{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--navy-100),var(--blue-100));display:grid;place-items:center;font-weight:800;color:var(--navy-700)}
+.leader .pts{margin-inline-start:auto;font-family:var(--font-en);font-weight:800;color:var(--navy-700)}
+
+/* ---------- AI features ---------- */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.ai-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;position:relative;overflow:hidden;transition:.25s var(--ease-spring)}
+.ai-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(18,59,94,.12)}
+.ai-card .glow{position:absolute;top:-30px;inset-inline-end:-30px;width:120px;height:120px;border-radius:50%;filter:blur(40px);opacity:.5}
+.ai-card .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;margin-bottom:16px;position:relative}
+.ai-card h3{font-family:var(--font-display);font-weight:700;font-size:19px;margin-bottom:8px}
+.ai-card p{font-size:14px;color:var(--ink-3);margin-bottom:16px}
+.ai-demo{background:var(--paper);border-radius:14px;padding:14px;font-size:13px}
+.ai-match{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ai-match .bar{flex:1;height:8px;border-radius:99px;background:var(--paper-2);overflow:hidden}
+.ai-match .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue-600),var(--teal))}
+.ai-match .pc{font-family:var(--font-en);font-weight:800;font-size:12px;width:40px;text-align:end}
+.chat-bub{padding:10px 14px;border-radius:16px;margin-bottom:8px;font-size:13px;max-width:85%;animation:fadeUp .5s var(--ease-out) both}
+.chat-bub.bot{background:#fff;border:1px solid var(--line);border-bottom-right-radius:4px}
+.chat-bub.user{background:linear-gradient(135deg,var(--navy-700),var(--navy-600));color:#fff;margin-inline-start:auto;border-bottom-left-radius:4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.typing{display:inline-flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-3);animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+/* ---------- Footer ---------- */
+.foot{background:var(--ink);color:#fff;padding:clamp(48px,6vw,80px) clamp(16px,4vw,48px) 40px;margin-top:40px}
+.foot-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+.foot h3{font-family:var(--font-display);font-weight:800;font-size:28px;margin-bottom:12px}
+.foot p{color:#94A3B8;font-size:14px;max-width:340px}
+.foot .col h5{font-family:var(--font-en);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-500);margin-bottom:14px}
+.foot .col a{display:block;color:#CBD5E1;text-decoration:none;font-size:14px;padding:5px 0;transition:.2s}
+.foot .col a:hover{color:#fff;transform:translateX(-4px)}
+.foot-bot{max-width:1280px;margin:40px auto 0;padding-top:24px;border-top:1px solid #1E293B;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#64748B;font-size:13px}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(36px);transition:.7s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Toast ---------- */
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:99px;font-weight:700;font-size:14px;opacity:0;transition:.3s var(--ease-spring);z-index:999;box-shadow:0 16px 40px rgba(0,0,0,.3);pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:900px){
+  .opening{grid-template-columns:1fr;text-align:center}
+  .eyebrow{justify-content:center}
+  .opening p.lead{margin-inline:auto}
+  .stat-row{justify-content:center}
+  .type-grid,.gamewrap,.foot-in{grid-template-columns:1fr}
+  .ribbon nav{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="ambient"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+
+<header class="ribbon">
+  <div class="brand"><span class="mark">J</span> JobEzz <span class="ver-pill">v3.0</span></div>
+  <nav>
+    <a href="#colors">الألوان</a>
+    <a href="#type">الخطوط</a>
+    <a href="#components">المكوّنات</a>
+    <a href="#motion">الحركة</a>
+    <a href="#game">التحفيز</a>
+    <a href="#ai">الذكاء</a>
+  </nav>
+</header>
+
+<!-- OPENING -->
+<section class="opening">
+  <div>
+    <span class="eyebrow">Legendary Design System</span>
+    <h1>نظام تصميم<br><em>أسطوري</em> <span class="stroke">بمستوى</span><br>الشركات العالمية</h1>
+    <p class="lead">كل بكسل، كل حركة، كل تفاعل — مصمّم بدقة مليون دولار. استكشف المكوّنات الحية، نظام الألوان، فن الحركة، والتحفيز والذكاء الاصطناعي.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="n" data-count="52">0</div><div class="l">ملف في الحزمة</div></div>
+      <div class="stat"><div class="n" data-count="120">0</div><div class="l">مكوّن وأنيميشن</div></div>
+      <div class="stat"><div class="n" data-count="3">0</div><div class="l">منصّات (ويب/أندرويد/أدمن)</div></div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="scr-status"><span>9:41</span><span>📶 🔋</span></div>
+          <div class="scr-body">
+            <!-- Home -->
+            <div class="scr-view active" data-v="0">
+              <div class="scr-greet">مساء الخير 👋</div>
+              <div class="scr-name">يوسف المنفي</div>
+              <div class="mini-search">🔍 ابحث عن خدمة أو وظيفة...</div>
+              <div class="mini-cats">
+                <div class="mini-cat"><span class="ic">🔧</span>سباك</div>
+                <div class="mini-cat"><span class="ic">⚡</span>كهرباء</div>
+                <div class="mini-cat"><span class="ic">📦</span>نقل</div>
+                <div class="mini-cat"><span class="ic">❄️</span>تكييف</div>
+              </div>
+              <div class="mini-sec">أحدث الوظائف</div>
+              <div class="mini-card"><div class="mini-av">💼</div><div><div class="t">محاسب مالي</div><div class="s">شركة الأفق • بنغازي</div></div><span class="mini-badge">كامل</span></div>
+              <div class="mini-card"><div class="mini-av">🎨</div><div><div class="t">مصمم جرافيك</div><div class="s">استوديو إبداع</div></div><span class="mini-badge">عن بُعد</span></div>
+            </div>
+            <!-- Services -->
+            <div class="scr-view" data-v="1">
+              <div class="scr-name">الخدمات 🔧</div>
+              <div class="mini-card"><div class="mini-av">👨‍🔧</div><div><div class="t">أحمد العريبي ✓</div><div class="s">سباك • 1.2 كم • ⭐ 4.9</div></div><span class="mini-badge">متصل</span></div>
+              <div class="mini-card"><div class="mini-av">⚡</div><div><div class="t">سالم الكهربائي ✓</div><div class="s">كهربائي • 2.5 كم • ⭐ 4.8</div></div><span class="mini-badge">متصل</span></div>
+              <div class="mini-card"><div class="mini-av">🚚</div><div><div class="t">نقل الأثاث السريع</div><div class="s">نقل • 3 كم • ⭐ 4.7</div></div><span class="mini-badge">مشغول</span></div>
+            </div>
+            <!-- Courses -->
+            <div class="scr-view" data-v="2">
+              <div class="scr-name">الدورات 🎓</div>
+              <div class="mini-card"><div class="mini-av">🔧</div><div><div class="t">كن سباكاً معتمداً</div><div class="s">430 طالب • ⭐ 4.6</div></div><span class="mini-badge">150 د.ل</span></div>
+              <div class="mini-card"><div class="mini-av">💻</div><div><div class="t">برمجة الويب</div><div class="s">210 طالب • ⭐ 4.8</div></div><span class="mini-badge">مجاني</span></div>
+              <div class="mini-card"><div class="mini-av">📷</div><div><div class="t">التصوير الاحترافي</div><div class="s">180 طالب • ⭐ 4.5</div></div><span class="mini-badge">90 د.ل</span></div>
+            </div>
+            <!-- Profile -->
+            <div class="scr-view" data-v="3">
+              <div style="text-align:center;padding:12px 0">
+                <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--navy-700),var(--blue-700));margin:0 auto 10px;display:grid;place-items:center;color:#fff;font-size:26px;font-weight:800">ي</div>
+                <div class="scr-name" style="margin:0">يوسف المنفي ✓</div>
+                <div class="scr-greet">بنغازي • ليبيا</div>
+              </div>
+              <div class="mini-card"><div class="mini-av">💰</div><div><div class="t">المحفظة</div><div class="s">340 د.ل</div></div></div>
+              <div class="mini-card"><div class="mini-av">🏆</div><div><div class="t">المستوى 7</div><div class="s">1,240 نقطة</div></div></div>
+              <div class="mini-card"><div class="mini-av">⚙️</div><div><div class="t">الإعدادات</div><div class="s">اللغة، الوضع الداكن</div></div></div>
+            </div>
+          </div>
+          <div class="scr-nav">
+            <button class="on" data-nav="0">🏠</button>
+            <button data-nav="1">🔧</button>
+            <button data-nav="2">🎓</button>
+            <button data-nav="3">👤</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-dots">
+        <button class="on" data-nav="0"></button>
+        <button data-nav="1"></button>
+        <button data-nav="2"></button>
+        <button data-nav="3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section class="section reveal" id="colors">
+  <div class="sec-head">
+    <div class="sec-tag">Color System</div>
+    <h2>نظام ألوان يبعث الثقة</h2>
+    <p>كحلي عميق وأزرق حيوي — هوية بصرية موحّدة تعبّر عن الاحترافية والموثوقية. اضغط أي لون لنسخ رمزه.</p>
+  </div>
+  <div class="palette" id="palette"></div>
+</section>
+
+<!-- TYPE -->
+<section class="section reveal" id="type">
+  <div class="sec-head">
+    <div class="sec-tag">Typography</div>
+    <h2>طباعة عربية أنيقة</h2>
+    <p>خط Changa للعناوين القوية، Tajawal للنصوص، و Inter للأرقام واللاتينية.</p>
+  </div>
+  <div class="type-grid">
+    <div class="type-card">
+      <div class="lbl">Display — Changa</div>
+      <div class="type-display">أبجد هوز</div>
+      <p style="margin-top:12px;color:var(--ink-3)">حطي كلمن سعفص قرشت ثخذ ضظغ</p>
+    </div>
+    <div class="type-card">
+      <div class="lbl">Body — Tajawal</div>
+      <div class="type-body">منصة العمل الشاملة: وظائف، خدمات عند الطلب، ودورات تدريبية معتمدة. نصمم تجربة سلسة تليق بالسوق الليبي والعربي.</div>
+    </div>
+    <div class="type-card">
+      <div class="lbl">Numbers — Inter</div>
+      <div class="type-en">0123456789</div>
+      <p style="margin-top:12px;font-family:var(--font-en);color:var(--ink-3)">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+    </div>
+    <div class="type-card">
+      <div class="lbl">Type Scale</div>
+      <div class="type-scale">
+        <div><span class="sz">46px</span><span style="font-family:var(--font-display);font-weight:800;font-size:30px">عنوان رئيسي</span></div>
+        <div><span class="sz">28px</span><span style="font-family:var(--font-display);font-weight:700;font-size:22px">عنوان فرعي</span></div>
+        <div><span class="sz">17px</span><span style="font-size:17px;font-weight:700">عنوان قسم</span></div>
+        <div><span class="sz">15px</span><span style="font-size:15px">نص عادي للقراءة</span></div>
+        <div><span class="sz">12px</span><span style="font-size:12px;color:var(--ink-3)">نص ثانوي صغير</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section class="section reveal" id="components">
+  <div class="sec-head">
+    <div class="sec-tag">Components</div>
+    <h2>مكتبة مكوّنات حية</h2>
+    <p>كل مكوّن تفاعلي بالكامل — جرّب الأزرار، المفاتيح، الحقول، والحالات المختلفة.</p>
+  </div>
+  <div class="comp-grid">
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> الأزرار</div>
+      <div class="demo">
+        <button class="btn btn-primary">زر رئيسي</button>
+        <button class="btn btn-accent">زر مميّز</button>
+        <button class="btn btn-ghost">زر ثانوي</button>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> الشرائح (Chips)</div>
+      <div class="demo" style="flex-direction:row;flex-wrap:wrap;gap:8px">
+        <span class="chip-demo on">الكل</span>
+        <span class="chip-demo">دوام كامل</span>
+        <span class="chip-demo">عن بُعد</span>
+        <span class="chip-demo">جزئي</span>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> الشارات (Badges)</div>
+      <div class="demo" style="flex-direction:row;flex-wrap:wrap;gap:8px">
+        <span class="badge-demo b-navy">موثّق ✓</span>
+        <span class="badge-demo b-success">نشط</span>
+        <span class="badge-demo b-warning">قيد المراجعة</span>
+        <span class="badge-demo b-danger">مرفوض</span>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> حقول الإدخال</div>
+      <div class="demo">
+        <input class="input-demo" placeholder="رقم الهاتف" />
+        <input class="input-demo" placeholder="البريد الإلكتروني" />
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> المفاتيح (Switch)</div>
+      <div class="demo" style="flex-direction:row;align-items:center;gap:16px">
+        <div class="switch-demo on" data-switch><i></i></div>
+        <div class="switch-demo" data-switch><i></i></div>
+        <span style="font-size:13px;color:var(--ink-3)">اضغط للتبديل</span>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> شريط التقدّم</div>
+      <div class="demo">
+        <div class="progress-demo"><div class="fill" data-progress="72"></div></div>
+        <div class="progress-demo"><div class="fill" data-progress="45"></div></div>
+        <div class="progress-demo"><div class="fill" data-progress="90"></div></div>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> التحميل (Skeleton)</div>
+      <div class="demo" style="flex-direction:row;gap:12px;align-items:center">
+        <div class="skel" style="width:44px;height:44px;border-radius:50%;flex-shrink:0"></div>
+        <div style="flex:1"><div class="skel" style="height:14px;width:70%;margin-bottom:8px"></div><div class="skel" style="height:12px;width:45%"></div></div>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> التقييم (Stars)</div>
+      <div class="demo" style="flex-direction:row;gap:4px;font-size:28px" id="starDemo">
+        <span data-star="1">⭐</span><span data-star="2">⭐</span><span data-star="3">⭐</span><span data-star="4">⭐</span><span data-star="5" style="opacity:.3">⭐</span>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="ct"><span class="dot"></span> بطاقة مزوّد</div>
+      <div class="mini-card" style="margin:0"><div class="mini-av">👨‍🔧</div><div><div class="t">أحمد العريبي ✓</div><div class="s">سباك • ⭐ 4.9 • 312 مهمة</div></div><span class="mini-badge">25 د.ل/س</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION -->
+<section class="section reveal" id="motion">
+  <div class="sec-head">
+    <div class="sec-tag">Motion Design</div>
+    <h2>فن الحركة — Spring Physics</h2>
+    <p>كل حركة محسوبة بفيزياء النوابض لمنح إحساس حي وطبيعي. اضغط أي بلاط لتشغيل الأنيميشن.</p>
+  </div>
+  <div class="motion-grid" id="motionGrid">
+    <div class="motion-tile m-spring"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">نابض</div><div class="ds">Spring</div></div>
+    <div class="motion-tile m-bounce"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">ارتداد</div><div class="ds">Bounce</div></div>
+    <div class="motion-tile m-flip"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">قلب 3D</div><div class="ds">Flip</div></div>
+    <div class="motion-tile m-shake"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">اهتزاز</div><div class="ds">Shake</div></div>
+    <div class="motion-tile m-pulse"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">نبض</div><div class="ds">Pulse</div></div>
+    <div class="motion-tile m-spin"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">دوران</div><div class="ds">Spin</div></div>
+    <div class="motion-tile m-float"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">طفو</div><div class="ds">Float</div></div>
+    <div class="motion-tile m-wiggle"><div class="motion-stage"><div class="motion-ball"></div></div><div class="nm">تمايل</div><div class="ds">Wiggle</div></div>
+  </div>
+</section>
+
+<!-- GAMIFICATION -->
+<section class="section reveal" id="game">
+  <div class="sec-head">
+    <div class="sec-tag">Gamification</div>
+    <h2>نظام تحفيز يُدمِنه المستخدمون</h2>
+    <p>نقاط، شارات، مستويات، سلاسل إنجاز، ولوحة صدارة — تحوّل الاستخدام اليومي إلى لعبة ممتعة.</p>
+  </div>
+  <div class="gamewrap">
+    <div>
+      <div class="level-card">
+        <div class="rank">Current Rank</div>
+        <div class="lvl">المستوى 7</div>
+        <div class="title">🥇 حرفي ماهر</div>
+        <div class="xp-bar"><div class="fill" data-progress="68"></div></div>
+        <div class="xp-txt">1,240 / 1,800 نقطة للمستوى التالي</div>
+        <div class="streak">
+          <div class="day done">سبت</div><div class="day done">أحد</div><div class="day done">إثن</div>
+          <div class="day done">ثلا</div><div class="day done">أرب</div><div class="day">خمي</div><div class="day">جمع</div>
+        </div>
+        <div style="margin-top:12px;font-size:13px;opacity:.85">🔥 سلسلة 5 أيام متتالية!</div>
+      </div>
+      <div class="leader">
+        <h4>🏆 لوحة الصدارة هذا الأسبوع</h4>
+        <div class="row top"><span class="pos">1</span><span class="av">أ</span><span>أحمد العريبي</span><span class="pts">2,840</span></div>
+        <div class="row top"><span class="pos">2</span><span class="av">س</span><span>سالم البرعصي</span><span class="pts">2,510</span></div>
+        <div class="row top"><span class="pos">3</span><span class="av">ي</span><span>يوسف المنفي</span><span class="pts">1,240</span></div>
+        <div class="row"><span class="pos">4</span><span class="av">م</span><span>منى العبيدي</span><span class="pts">1,105</span></div>
+        <div class="row"><span class="pos">5</span><span class="av">خ</span><span>خالد التريكي</span><span class="pts">980</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="badges" id="badges">
+        <div class="badge-earn"><span class="em">🚀</span><div class="bn">البداية السريعة</div><div class="bp">أول طلب</div></div>
+        <div class="badge-earn"><span class="em">⭐</span><div class="bn">خمس نجوم</div><div class="bp">تقييم 5.0</div></div>
+        <div class="badge-earn"><span class="em">🔥</span><div class="bn">سلسلة 7 أيام</div><div class="bp">نشاط متواصل</div></div>
+        <div class="badge-earn"><span class="em">🎓</span><div class="bn">متعلّم</div><div class="bp">أول شهادة</div></div>
+        <div class="badge-earn"><span class="em">💎</span><div class="bn">محترف</div><div class="bp">100 مهمة</div></div>
+        <div class="badge-earn"><span class="em">👑</span><div class="bn">الأسطورة</div><div class="bp">المستوى 10</div></div>
+        <div class="badge-earn locked"><span class="em">🏅</span><div class="bn">الصدارة</div><div class="bp">المركز الأول</div></div>
+        <div class="badge-earn locked"><span class="em">🌟</span><div class="bn">سفير</div><div class="bp">10 إحالات</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="section reveal" id="ai">
+  <div class="sec-head">
+    <div class="sec-tag">AI Powered</div>
+    <h2>ذكاء اصطناعي في قلب التجربة</h2>
+    <p>مطابقة ذكية، مساعد محادثة، وتسعير ذكي — تقنيات تجعل المنصة أذكى مع كل استخدام.</p>
+  </div>
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="glow" style="background:var(--blue-700)"></div>
+      <div class="ic" style="background:var(--blue-100)">🎯</div>
+      <h3>مطابقة ذكية</h3>
+      <p>خوارزمية تطابق أفضل الفنيين بالطلبات حسب الموقع، التقييم، والتخصص.</p>
+      <div class="ai-demo">
+        <div class="ai-match"><span style="width:80px">أحمد ع.</span><div class="bar"><i style="width:96%"></i></div><span class="pc">96%</span></div>
+        <div class="ai-match"><span style="width:80px">سالم ب.</span><div class="bar"><i style="width:88%"></i></div><span class="pc">88%</span></div>
+        <div class="ai-match"><span style="width:80px">خالد ت.</span><div class="bar"><i style="width:74%"></i></div><span class="pc">74%</span></div>
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="glow" style="background:var(--purple)"></div>
+      <div class="ic" style="background:#F3E8FF">🤖</div>
+      <h3>مساعد محادثة</h3>
+      <p>مساعد ذكي يجيب على الأسئلة ويساعد في إنشاء الطلبات بلغة طبيعية.</p>
+      <div class="ai-demo" id="aiChat">
+        <div class="chat-bub bot">مرحباً! كيف أساعدك اليوم؟ 👋</div>
+        <div class="chat-bub user">أحتاج سباك بشكل عاجل</div>
+        <div class="chat-bub bot">وجدت لك 3 سباكين متاحين قربك، أفضلهم أحمد (⭐4.9). أحجزه الآن؟</div>
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="glow" style="background:var(--teal)"></div>
+      <div class="ic" style="background:#CCFBF1">💡</div>
+      <h3>تسعير ذكي</h3>
+      <p>تقدير فوري للتكلفة العادلة بناءً على نوع العمل، المسافة، وأسعار السوق.</p>
+      <div class="ai-demo">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span>إصلاح تسريب</span><span style="font-family:var(--font-en);font-weight:800">40–60 د.ل</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span>تركيب سخان</span><span style="font-family:var(--font-en);font-weight:800">70–90 د.ل</span></div>
+        <div style="display:flex;justify-content:space-between"><span>تمديد شبكة</span><span style="font-family:var(--font-en);font-weight:800">200+ د.ل</span></div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:11px;color:var(--ink-3)">📊 مبني على 312 مهمة مشابهة في بنغازي</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <h3>JobEzz</h3>
+      <p>منصة العمل الشاملة في ليبيا — وظائف، خدمات عند الطلب، ودورات تدريبية معتمدة. نظام تصميم أسطوري بمستوى عالمي.</p>
+    </div>
+    <div class="col">
+      <h5>المنصّة</h5>
+      <a href="index-legendary.html">التطبيق (ويب)</a>
+      <a href="admin-legendary.html">لوحة الأدمن</a>
+      <a href="../android-app">تطبيق Android</a>
+    </div>
+    <div class="col">
+      <h5>التوثيق</h5>
+      <a href="../docs/DESIGN_SYSTEM.md">نظام التصميم</a>
+      <a href="../docs/API_DOCUMENTATION.md">واجهة API</a>
+      <a href="../docs/ARCHITECTURE.md">البنية المعمارية</a>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2026 JobEzz — صُنع بفخر في ليبيا 🇱🇾</span>
+    <span style="font-family:var(--font-en)">Legendary Design System v3.0</span>
+  </div>
+</footer>
+
+<div id="toast">تم النسخ ✓</div>
+
+<script>
+/* ---------- Toast ---------- */
+const toastEl=document.getElementById('toast');let tt;
+function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove('show'),2000);}
+
+/* ---------- Palette ---------- */
+const COLORS=[
+  ['Navy 900','#0A1F33'],['Navy 700','#123B5E'],['Navy 500','#245A8A'],['Navy 300','#5A9AD5'],
+  ['Blue 700','#4AA3E0'],['Blue 500','#5BB0E8'],['Teal','#14B8A6'],['Success','#10B981'],
+  ['Warning','#F59E0B'],['Orange','#F97316'],['Danger','#EF4444'],['Purple','#8B5CF6'],
+  ['Pink','#EC4899'],['Ink','#0F172A'],['Slate','#64748B'],['Paper','#F4F7FB']
+];
+document.getElementById('palette').innerHTML=COLORS.map(([n,h])=>`
+  <div class="swatch" data-hex="${h}">
+    <div class="chip" style="background:${h}"><span class="copy">نسخ ${h}</span></div>
+    <div class="meta"><div class="nm">${n}</div><div class="hx">${h}</div></div>
+  </div>`).join('');
+document.getElementById('palette').addEventListener('click',e=>{
+  const s=e.target.closest('.swatch');if(!s)return;
+  navigator.clipboard?.writeText(s.dataset.hex);toast('تم نسخ '+s.dataset.hex+' ✓');
+});
+
+/* ---------- Phone nav ---------- */
+function setView(i){
+  document.querySelectorAll('.scr-view').forEach(v=>v.classList.toggle('active',+v.dataset.v===i));
+  document.querySelectorAll('.scr-nav button').forEach(b=>b.classList.toggle('on',+b.dataset.nav===i));
+  document.querySelectorAll('.phone-dots button').forEach(b=>b.classList.toggle('on',+b.dataset.nav===i));
+}
+document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>setView(+b.dataset.nav)));
+let autoV=0;setInterval(()=>{autoV=(autoV+1)%4;setView(autoV);},3500);
+
+/* ---------- Chips / switches / stars ---------- */
+document.querySelectorAll('.chip-demo').forEach(c=>c.addEventListener('click',()=>{
+  c.parentElement.querySelectorAll('.chip-demo').forEach(x=>x.classList.remove('on'));c.classList.add('on');
+}));
+document.querySelectorAll('[data-switch]').forEach(s=>s.addEventListener('click',()=>s.classList.toggle('on')));
+document.getElementById('starDemo').addEventListener('click',e=>{
+  const st=e.target.closest('[data-star]');if(!st)return;const v=+st.dataset.star;
+  document.querySelectorAll('#starDemo [data-star]').forEach(s=>s.style.opacity=+s.dataset.star<=v?'1':'.3');
+});
+
+/* ---------- Motion playground ---------- */
+document.querySelectorAll('.motion-tile').forEach(t=>t.addEventListener('click',()=>{
+  t.classList.remove('play');void t.offsetWidth;t.classList.add('play');
+}));
+
+/* ---------- Badges ---------- */
+document.querySelectorAll('.badge-earn:not(.locked)').forEach(b=>b.addEventListener('click',()=>{
+  b.style.animation='mBounce .7s';setTimeout(()=>b.style.animation='',700);toast('شارة مكتسبة! 🎉');
+}));
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('in');
+    e.target.querySelectorAll('[data-progress]').forEach(f=>f.style.width=f.dataset.progress+'%');
+    io.unobserve(e.target);
+  }
+}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* progress in opening cards */
+setTimeout(()=>document.querySelectorAll('.level-card [data-progress]').forEach(f=>f.style.width=f.dataset.progress+'%'),600);
+
+/* ---------- Count up ---------- */
+function countUp(el){
+  const target=+el.dataset.count;let cur=0;const step=Math.max(1,Math.ceil(target/40));
+  const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=cur;},30);
+}
+const cio=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* ---------- AI chat loop ---------- */
+const aiMsgs=[
+  {t:'bot',m:'مرحباً! كيف أساعدك اليوم؟ 👋'},
+  {t:'user',m:'أحتاج سباك بشكل عاجل'},
+  {t:'bot',m:'وجدت لك 3 سباكين متاحين قربك، أفضلهم أحمد (⭐4.9). أحجزه الآن؟'},
+  {t:'user',m:'نم، احجزه من فضلك'},
+  {t:'bot',m:'تم الحجز ✓ أحمد في الطريق إليك، الوصول خلال 8 دقائق.'}
+];
+let aiI=0;const aiChat=document.getElementById('aiChat');
+setInterval(()=>{
+  aiI=(aiI+1)%aiMsgs.length;
+  if(aiI===0){aiChat.innerHTML='';}
+  const {t,m}=aiMsgs[aiI];
+  const bub=document.createElement('div');bub.className='chat-bub '+t;bub.textContent=m;
+  aiChat.appendChild(bub);aiChat.scrollTop=aiChat.scrollHeight;
+  while(aiChat.children.length>4)aiChat.removeChild(aiChat.firstChild);
+},3000);
+</script>
+</body>
+</html>
